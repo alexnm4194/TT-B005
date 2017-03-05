@@ -1,0 +1,82 @@
+\documentclass[oneside,10pt]{book}
+
+\usepackage{packages/cdtBook}
+\usepackage{packages/usecases}
+\usepackage{gensymb}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[utf8]{inputenc}
+
+\setlength{\arrayrulewidth}{.3mm}
+\setlength{\tabcolsep}{15pt}
+\renewcommand{\arraystretch}{1}
+ 
+\title{Instituto Politécnico Nacional}
+\subtitle{Sistema para la aplicación de la prueba proyectiva gráfica HTP en apoyo a psicólogos}
+\author{Laureano Lechuga Erick  \and  \color{authorColor} Noriega Montalban Alejandro}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%=== PAGINA VACIA ===
+\maketitle
+\thispagestyle{empty}
+%=== INDICE ===
+\tableofcontents
+
+%=========================================================
+\chapter*{Advertencia}
+\addcontentsline{toc}{chapter}{Advertencia}
+
+\begin{center}
+\begin{tabular}{ ||m{35em}|| } 
+ \hline
+ \hline
+ \textit{``Este documento contiene información desarrollada por la Escuela Superior de Cómputo del Instituto Policnico Nacional, a partir de datos y documentos con derecho de propiedad y por lo tanto, su uso quedará restringido a las aplicaciones que explícitamente se convenga.''}\\
+ \\
+ La aplicación no convenida exime a la escuela su responsabilidad técnica y da lugar a las consecuencias legales que para tal efecto se determinen.\\
+ \\
+ Información adicional sobre este reporte técnico podrá obtenerse en:\\
+ \\
+ Instituto Politécnico Nacional, situada en Av. Juan de Dios Bátiz s/n Teléfono: 57296000, extensión 52000.\\ 
+ \hline
+ \hline
+\end{tabular}
+\end{center}
+
+ 
+%=========================================================
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+El sistema contara con un resumen tomado del protocolo
+
+%=========================================================
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+El sistema contara con una introducción tomada del protocolo
+
+%=========================================================
+\chapter{Metodología}
+
+\cfinput{cap1/contexto}
+\cfinput{cap1/objetivos}
+\cfinput{cap1/justificacion}
+%=========================================================
+\chapter{Estado del arte}
+
+\cfinput{cap2/sistemassimilares}
+\cfinput{cap2/trabajossimilares}
+%=========================================================
+\chapter{Marco teórico}
+
+\cfinput{cap3/psicologia}
+\cfinput{cap3/expediente}
+\cfinput{cap3/expedientepsicologico}
+\cfinput{cap3/pruebapsicologica}
+\cfinput{cap3/pruebaproyectiva}
+\cfinput{cap3/htp}
+\cfinput{cap3/sistema}
+\cfinput{cap3/dispositivomovil}
+%=========================================================
+
+\end{document}
+
