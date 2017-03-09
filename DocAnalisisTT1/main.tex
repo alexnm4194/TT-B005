@@ -1,4 +1,4 @@
-\documentclass[oneside,10pt]{book}
+\documentclass[oneside,12pt]{book}
 
 \usepackage{packages/cdtBook}
 \usepackage{packages/usecases}
@@ -22,13 +22,13 @@
 \thispagestyle{empty}
 %=== INDICE ===
 \tableofcontents
-
+%\listoftables
 %=========================================================
 \chapter*{Advertencia}
 \addcontentsline{toc}{chapter}{Advertencia}
 
 \begin{center}
-\begin{tabular}{ ||m{35em}|| } 
+\begin{tabular}{ ||m{33em}|| } 
  \hline
  \hline
  \textit{``Este documento contiene información desarrollada por la Escuela Superior de Cómputo del Instituto Policnico Nacional, a partir de datos y documentos con derecho de propiedad y por lo tanto, su uso quedará restringido a las aplicaciones que explícitamente se convenga.''}\\
@@ -47,12 +47,15 @@
 %=========================================================
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-El sistema contara con un resumen tomado del protocolo
+
+Se propone crear un sistema capaz de realizar un pre análisis de la prueba proyectiva Casa, Árbol y Persona (HTP por sus siglas en ingles) utilizando técnicas de reconocimiento de patrones, análisis de imágenes y una base de datos de conocimiento que permitan definir rasgos objetivos de la personalidad del individuo analizando los trazos de dicha prueba. Con el fin de entregar al psicólogo un resultado preliminar con base en los parámetros de presión, ubicación y dirección de los trazos del paciente con lo cual pueda iniciar su diagnóstico profesional, y a su vez tener un manejo digital del expediente psicológico, para reducir el riesgo de daño accidental al material de la prueba, al igual el volumen físico de los expedientes que actualmente se manejan en papel y aumentar la accesibilidad al expediente por parte del psicólogo
 
 %=========================================================
-\chapter*{Introducción}
-\addcontentsline{toc}{chapter}{Introducción}
-El sistema contara con una introducción tomada del protocolo
+%\chapter*{Introducción}
+%\addcontentsline{toc}{chapter}{Introducción}
+
+
+
 
 %=========================================================
 \chapter{Metodología}
@@ -64,7 +67,7 @@ El sistema contara con una introducción tomada del protocolo
 \chapter{Estado del arte}
 
 \cfinput{cap2/sistemassimilares}
-\cfinput{cap2/trabajossimilares}
+%\cfinput{cap2/trabajossimilares}
 %=========================================================
 \chapter{Marco teórico}
 
@@ -77,6 +80,32 @@ El sistema contara con una introducción tomada del protocolo
 \cfinput{cap3/sistema}
 \cfinput{cap3/dispositivomovil}
 %=========================================================
+\chapter{Sistema para la aplicación de la prueba proyectiva gráfica HTP en apoyo a psicólogos}
 
+\cfinput{cap4/descripcion}
+\cfinput{cap4/arquitectura}
+\cfinput{cap4/definicionmodulos}
+\cfinput{cap4/caracteristicas}
+\cfinput{cap4/limitaciones}
+\cfinput{cap4/estudioviabilidad}
+%=========================================================
+\chapter{Análisis}
+\cfinput{cap5/requerimientos}
+\cfinput{cap5/procesos}
+\cfinput{cap5/datos}
+\cfinput{cap5/modelado}
+
+
+%=========================================================
+\chapter{Diseño}
+
+
+%=========================================================
+%\begin{thebibliography}{50}
+%\bibitem{1} M. Sarl  i Gallart y M. Mart nez Sais, «Portas de Paidopsiquiatria,» 2009 2007. [En línea]. Available: http://www.paidopsiquiatria.cat/files/tests\_proyectivos.pdf. [Último acceso: 21 Septiembre 2016]
+
+%\bibitem{2} «Solo Psicologia,» 17 junio 2010. [En línea]. Available: http://www.solopsicologia.com/tecnicas-proyectivas/. [Último acceso: 21 septiembre 2016].
+%\end{thebibliography}
+%=========================================================
 \end{document}
 

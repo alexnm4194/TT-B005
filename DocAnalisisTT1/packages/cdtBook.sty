@@ -7,16 +7,18 @@
 \ProvidesPackage{cdtBook}[2010/05/30, v1.0 CDT-ESCOM-IPN Plantilla para reportes de la Coordinación]
 
 \usepackage[utf8]{inputenc}                      % Codificación de caracteres en UTF-8.
-\usepackage[spanish]{babel}                      % Cambia las variables del documento a español.
+\usepackage[spanish, es-tabla]{babel}
+%\usepackage[spanish]{babel}                      % Cambia las variables del documento a español.
 \usepackage{cmbright}                            % Fuente de letras, tras opciones: arev, cmbright, pxfonts.
 \usepackage{graphicx}	                            % Manejo de imágenes.
 \usepackage[usenames,dvipsnames]{color}          % Para usar y definir colores.
 \usepackage{wallpaper}                           % Colocar imágenes en el fondo del documento.
 \usepackage{fancyhdr}                            % Manejo de encabezados.
 \usepackage[hmargin=2.5cm,vmargin=2cm]{geometry} % Manejo de márgenes del documento.
-\usepackage[Conny]{fncychap}                     % Manejo de capítulos: Sonny, Lenny, Glenn, Conny, Rejne and Bjarne.
+\usepackage[Sonny]{fncychap}                     % Manejo de capítulos: Sonny, Lenny, Glenn, Conny, Rejne and Bjarne.
 \usepackage{marvosym}                            % Algunos símbolos.
 \usepackage{chapterfolder}
+\usepackage{enumerate}
 
 %=====================================================
 % Definición de colores
@@ -95,4 +97,14 @@
 	\let\Instrucciones=\varInstrucciones%
 }
 
+%====================================================
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\thetable}{\arabic{table}}
 
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\newcommand{\varSubSubSection}[1]{}
+\let\varSubSubSection=\subsubsection
+\renewcommand{\subsubsection}[1]{{\color{subsectionColor}\varSubSubSection{#1}}}
