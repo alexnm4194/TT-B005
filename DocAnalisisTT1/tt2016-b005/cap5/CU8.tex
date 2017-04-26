@@ -1,0 +1,127 @@
+%Editar cuestionario
+\begin{UseCase}{CU8}{Modificar cuestionario}{
+    El psicólogo podrá modificar o eliminar los cuestionarios creados.
+	}
+	\UCitem{Versión}{1.0 - 10/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Modificar un cuestionario.}
+	\UCitem{Entradas}{}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El cuestionario debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+        \begin{itemize}
+            \item El cuestionario quedará actualizado en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN25}{ Formato Nombres}
+            \item \BRref{RN27}{ Tipos de preguntas}
+            \item \BRref{RN28}{ Ignorar campos}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}
+            \item \MSGref{MSG1}{Operación exitosa}
+            \item \MSGref{MSG2}{Operación fallida}
+            \item \MSGref{MSG4}{Confirmación}
+            \item \MSGref{MSG6}{Formato incorrecto registro}
+        \end{itemize}
+    }
+\end{UseCase}
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Despliega en pantalla el cuestionario  \label{CU8Continue}
+        \\\IUref{UICS}{Pantalla Cuestionario seleccionado}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Editar}.
+    \UCpaso[\UCactor] Se muestran 2 preguntas con la información almacenada y el nombre actual vía.
+        \\\IUref{UIN}{Pantalla Nuevo Cuestionario}.
+    \UCpaso Se editan los campos deseados en la pantalla. \label{CU8Regresa2} \Trayref{D} \Trayref{D2} \Trayref{D3}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Guardar}. \Trayref{C} \Trayref{R} \Trayref{F} \label{CU8Regresa}
+    \UCpaso Verifica el campo de nombre. \Trayref{A}
+        \\\BRref{RN25}{ Formato Nombres}
+    \UCpaso Ignora los campos vacios.
+        \\\BRref{RN28}{ Ignorar campos}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Se guarda el cuestionario. \Trayref{B}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra la pantalla \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso Continúa en el \UCref{CU23}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} con el campo en color rojo, conservando los datos y el texto ingresado.
+    \UCpaso Continua en el paso \ref{CU8Regresa} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{B}{No se pudo crear el cuestionario}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU8Regresa} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{Se desea eliminar el cuestionario}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Eliminar}.
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+    \UCpaso Se elimina el cuestionario.
+    \UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{Se cambia la pregunta a tipo cerrada}
+    \UCpaso[\UCactor] Selecciona el check \IUbutton{carrada} para la pregunta.
+    \UCpaso Se habilitan los campos para ingresar respuestas.
+        \\\BRref{RN27}{ Tipos de preguntas}
+    \UCpaso Se ingresa el texto en los campos de respuestas.
+    \UCpaso Continua en el paso \ref{CU8Regresa2} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D2}{Se cambia la pregunta a tipo Multiple}
+    \UCpaso[\UCactor] Selecciona el check \IUbutton{Multiple} para la pregunta.
+    \UCpaso Se habilitan los campos para ingresar respuestas.
+        \\\BRref{RN27}{ Tipos de preguntas}
+    \UCpaso Se ingresa el texto en los campos de respuestas.
+    \UCpaso Continua en el paso \ref{CU8Regresa2} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D3}{Se cambia la pregunta a tipo libre}
+    \UCpaso[\UCactor] Selecciona el check \IUbutton{Libre} para la pregunta.
+    \UCpaso Se limpian los campos de respuestas.
+        \\\BRref{RN27}{ Tipos de preguntas}
+    \UCpaso Continua en el paso \ref{CU8Regresa2} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{F}{Siguientes preguntas}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Ver más}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} con el campo del nombre y los datos almacenados para en las preguntas.
+    \UCpaso Continua en el paso \ref{CU8Regresa2} del \UCref{CU8}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+    \UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación anterior}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU8Regresa} del \UCref{CU8}
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

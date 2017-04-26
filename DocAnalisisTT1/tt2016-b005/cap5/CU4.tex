@@ -1,0 +1,105 @@
+%-------------------- COMIENZA descripción del caso de uso.
+
+\begin{UseCase}{CU4}{Editar información del paciente}{
+		El psicólogo ingresará los cambios en la información del paciente dentro de los campos solicitados por el sistema.
+	}
+	\UCitem{Versión}{1.0 - 09/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Modificar la información del paciente en el sistema.}
+	\UCitem{Entradas}{Formulario de editar información paciente}
+	\UCitem{Salidas}{Información actualizada del paciente}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El expediente del paciente debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	    \begin{itemize}
+            \item La nueva información quedará almacenada en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN1}{Datos requeridos}
+	        \item \BRref{RN2}{Datos correctos}
+	        \item \BRref{RN4}{Datos obtenidos paciente}
+	        \item \BRref{RN19}{Restricción de cambios paciente}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}	
+    	    \item \MSGref {MSG1}{Operación exitosa}
+    	    \item \MSGref {MSG2}{Operación fallida}
+    	    \item \MSGref {MSG4}{Confirmación}
+    	    \item \MSGref {MSG6}{Formato incorrecto registro}
+    		\item \MSGref {MSG8}{Dato requerido}
+    	\end{itemize}
+	}
+\end{UseCase}
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \\\IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Editar paciente}.
+    \UCpaso Muestra \IUref{UIEPa}{Pantalla Editar paciente} con la información que se tiene almacenada en la base de datos.
+    \UCpaso Restringe los cambios en algunos campos.
+        \\\BRref{RN19}{Restricción de cambios paciente}
+    \UCpaso[\UCactor] Edita los campos que se desea cambiar.\label{CU4Regresa}
+    	\\\BRref{RN5}{Datos obtenidos psicólogo} 
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Actualizar}.\Trayref{R} 
+	\UCpaso Verifica que los campos requeridos no estén vacíos.\Trayref{A}
+	    \\\BRref{RN1}{Datos requeridos}
+	\UCpaso Verifica que que todos campos tengan un formato valido.\Trayref{B}
+	    \\\BRref{RN2}{Datos correctos}
+	\UCpaso Se actualiza la información del paciente.\Trayref{C} \Trayref{D} \label{CU4Regresa2}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{EL campo se encuentra vacío}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG8}{Dato requerido}}.
+    \UCpaso Muestra \\\IUref{UIEPa}{Pantalla Editar paciente} con el campo en color azul y conservando los demás datos ingresados.
+    \UCpaso Continua en el paso \ref{CU4Regresa} del \UCref{CU4}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIEPa}{Pantalla Editar paciente} con el campo en color rojo y conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU4Regresa} del \UCref{CU4}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{No se pudo actualizar la información de la paciente}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEPa}{Pantalla Editar paciente} con la información que se tiene almacenada en la base de datos.
+    \UCpaso Continua en el paso \ref{CU4Regresa} del \UCref{CU4}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{No hay conexión a internet}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEPa}{Pantalla Editar paciente} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU4Regresa} del \UCref{CU4}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra la pantalla \\\IUref{UIP}{Pantalla Información paciente}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \\IUref{UIEPa}{Pantalla Editar paciente} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU4Regresa} del \UCref{CU4}
+\end{UCtrayectoriaA}
+
+%-------------------------------------- TERMINA descripción del caso de uso.

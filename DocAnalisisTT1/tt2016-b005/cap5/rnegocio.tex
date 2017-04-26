@@ -1,0 +1,148 @@
+\begin{BussinesRule}{RN1}{ Datos requeridos}
+\BRitem[Descripción:] El usuario debe ingresar toda la información marcada como requerida en el modelo conceptual del negocio.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN2}{ Datos correctos}
+\BRitem[Descripción:] La información que el usuario proporcione, debe ser del tipo y longitud definida en el modelo conceptual del negocio.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN3}{ Unicidad de elementos}
+\BRitem[Descripción:] Hay ciertos elementos que no pueden repetirse, ya sea por ser idénticos o por coincidir en uno o más datos. Esto se define como dato único en la tabla de atributos del modelo conceptual del negocio para cada entidad.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN4}{ Datos obtenidos paciente}
+\BRitem[Descripción:] El sistema obtiene los datos del paciente con base en el modelo conceptual del negocio de las entidad paciente, estos datos obtenidos son los siguientes: Nombre, Primer Apellido, Segundo Apellido, Fecha de nacimiento, Correo electrónico, Teléfono, Teléfono celular, Calle, No. de casa, Colonia, Código postal, Estado, Municipio o Delegación, Enfermedades, Medicamentos.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN5}{ Datos obtenidos psicólogo}
+\BRitem[Descripción:] El sistema obtiene los datos del psicólogo con base en el modelo conceptual del negocio de las entidades psicólogo, estos datos obtenidos son los siguientes: Nombre, Primer Apellido, Segundo Apellido, Cédula profesional, Fecha de nacimiento, Correo electrónico, Confirmar correo electrónico, Teléfono, Teléfono celular, Usuario, Contraseña, Confirmar contraseña.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN6}{ Correo electrónico valido}
+\BRitem[Descripción:] El correo electrónico permitido por el sistema debe ser de formato universal.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN7}{ Editar datos paciente}
+\BRitem[Descripción:] Solo el psicólogo puede editar los datos del paciente en el modelo conceptual del negocio.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN8}{ Editar datos psicólogo}
+\BRitem[Descripción:] Solo el psicólogo puede editar sus datos del modelo conceptual del negocio.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN9}{ Enteros Positivos}
+\BRitem[Descripción:] No se permiten números con signo negativo, los números serán enteros positivos.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN10}{ Estados de la cuenta}
+\BRitem[Descripción:] Se manejan 2 estados de la cuenta:\\
+- Cuenta verificada: Se refiere a que el psicólogo ya validado su dirección de correo electrónico.\\
+- Cuenta NO verificada: Se refiere a que el psicólogo no a validado su dirección de correo electrónico.
+\BRitem[Tipo:] Restricción de flujo.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN11}{ Cuenta verificada}
+\BRitem[Descripción:] El acceso al sistema solo se le permitirá a usuarios registrados que ya hayan verificado su cuenta
+\BRitem[Tipo:] Restricción de flujo.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN12}{ Usuario}
+\BRitem[Descripción:] El correo electrónico será el usuario con el que se identificará al psicólogo dentro del sistema.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN13}{ Nombre de archivos}
+\BRitem[Descripción:] El nombre de los archivos es conforme al tipo:\\
+    \footnotesize
+        \textit{
+            \textbf{- Nombre prueba} = Modulo + Nombre del paciente + Primer apellido del paciente + Fecha de creación + Hora de creación + Minuto de creación.\\
+            \textbf{ - Nombre reporte prueba} = "Reporte" + modulo + Nombre del paciente + Primer apellido del paciente + Fecha de creación + Hora de creación + Minuto de creación.\\
+            \textbf{ - Nombre reporte cuestionario} = Nombre cuestionario + Nombre del paciente + Primer apellido del paciente + Fecha de creación + Hora de creación + Minuto de creación.
+        }
+    \normalsize
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN14}{ Ver pacientes}
+\BRitem[Descripción:] El psicólogo solo podrá visualizar.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN15}{ Acceso al sistema}
+\BRitem[Descripción: ]  Usuario y contraseña ingresados al momento de iniciar sesión deben coincidir con el usuario y contraseña registrados en el sistema.
+\BRitem[Tipo:] Restricción de flujo.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN16}{ Confirmación de datos}
+\BRitem[Descripción:] Hay ciertos elementos que requieren confirmarse, como el correo y la contraseña, en este caso ambos datos ingresados en el registro deben coincidir con sus respectivos campos de verificación.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN17}{ Restricción de cambios}
+\BRitem[Descripción: ]  Una vez verificada la cuenta no se permitirá el cambio del correo electrónico, ni el cambio de la cédula profesional.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN18}{ Cambio en la contraseña}
+\BRitem[Descripción: ]  Se deberá proporcionar la contraseña actual del usuario para poder ser modificada por una nueva, la contraseña actual además deberá coincidir con la registrada en la base de datos.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN19}{ Restricción de cambios paciente}
+\BRitem[Descripción: ]  Una vez creado el expediente del paciente no se permitirá el cambio en la boleta del paciente.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN20}{ Búsqueda}
+\BRitem[Descripción:] Al realizar una búsqueda la lista que se muestra al usuario se deberá ir actualizando conforme se vaya ingresando un nuevo carácter en el campo de búsqueda.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN21}{ Formato de Búsqueda}
+\BRitem[Descripción:] La búsqueda no permite el uso de caracteres especiales que sean diferentes a vocales, consonantes, acentos y números. 
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN22}{ Búsqueda paciente}
+\BRitem[Descripción:] La búsqueda de un paciente se dará en los campos de Nombre del paciente, Primer Apellido, Segundo Apellido y Boleta de los pacientes que estén registrados en el sistema al momento en que se realiza la búsqueda.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN23}{ Búsqueda cuestionario}
+\BRitem[Descripción:] La búsqueda de un cuestionario se dará en el campo de Nombre del cuestionario.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN24}{ Búsqueda nota}
+\BRitem[Descripción:] La búsqueda de una nota se dará en el campo del Nombre de la nota.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN25}{ Formato Nombres}
+\BRitem[Descripción:] Los nombres de los cuestionarios y notas sólo permiten vocales, consonantes y números.
+\BRitem[Tipo:] Restricción de operación.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN26}{ Notas del paciente}
+\BRitem[Descripción:] Las notas se guardarán en el expediente de cada paciente. En la información de cada paciente se encuentra esta sección para ayudar a solo anotar datos de este paciente en su expediente.
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN27}{ Tipos de preguntas}
+\BRitem[Descripción:] Las preguntas de un cuestionario podrán ser de tres tipos:
+	\begin{itemizate}
+		\item Abierta: Las preguntas de un cuestionario se encuentran en esta opción por omisión, en esta se permite la entrada de texto libre en su aplicación.
+		\item Cerrada: Esta opción 
+	\end{itemizate}
+\BRitem[Tipo:] Hecho.
+\end{BussinesRule}
+

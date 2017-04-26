@@ -1,0 +1,167 @@
+\documentclass[oneside,12pt]{book}
+
+\usepackage{packages/cdtBook}
+\usepackage{packages/usecases}
+\usepackage{gensymb}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[utf8]{inputenc}
+
+\setlength{\arrayrulewidth}{.3mm}
+\setlength{\tabcolsep}{15pt}
+\renewcommand{\arraystretch}{1}
+ 
+\title{Sistema para la aplicación de la prueba proyectiva HTP en apoyo a psicólogos}
+\subtitle{Trabajo Terminal 2016-B005}
+\author{Laureano Lechuga Erick  \and  \color{authorColor} Noriega Montalban Alejandro}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%=== PAGINA VACIA ===
+\maketitle
+\thispagestyle{empty}
+%=== INDICE ===
+\tableofcontents
+%\listoftables
+%=========================================================
+\chapter*{Advertencia}
+\addcontentsline{toc}{chapter}{Advertencia}
+
+\begin{center}
+\begin{tabular}{ ||m{33em}|| } 
+ \hline
+ \hline
+ \textit{``Este documento contiene información desarrollada por la Escuela Superior de Cómputo del Instituto Policnico Nacional, a partir de datos y documentos con derecho de propiedad y por lo tanto, su uso quedará restringido a las aplicaciones que explícitamente se convenga.''}\\
+ \\
+ La aplicación no convenida exime a la escuela su responsabilidad técnica y da lugar a las consecuencias legales que para tal efecto se determinen.\\
+ \\
+ Información adicional sobre este reporte técnico podrá obtenerse en:\\
+ \\
+ Instituto Politécnico Nacional, situada en Av. Juan de Dios Bátiz s/n Teléfono: 57296000, extensión 52000.\\ 
+ \hline
+ \hline
+\end{tabular}
+\end{center}
+
+ 
+%=========================================================
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+
+Se propone crear un sistema capaz de realizar un pre análisis de la prueba proyectiva Casa, Árbol y Persona (HTP por sus siglas en ingles) utilizando técnicas de reconocimiento de patrones, análisis de imágenes y una base de datos de conocimiento que permitan definir rasgos objetivos de la personalidad del individuo analizando los trazos de dicha prueba. Con el fin de entregar al psicólogo un resultado preliminar con base en los parámetros de presión, ubicación y dirección de los trazos del paciente con lo cual pueda iniciar su diagnóstico profesional, y a su vez tener un manejo digital del expediente psicológico, para reducir el riesgo de daño accidental al material de la prueba, al igual el volumen físico de los expedientes que actualmente se manejan en papel y aumentar la accesibilidad al expediente por parte del psicólogo
+
+%=========================================================
+%\chapter*{Introducción}
+%\addcontentsline{toc}{chapter}{Introducción}
+
+
+
+
+%=========================================================
+\chapter{Metodología}
+
+\cfinput{cap1/contexto}
+\cfinput{cap1/objetivos}
+\cfinput{cap1/justificacion}
+%=========================================================
+\chapter{Estado del arte}
+
+\cfinput{cap2/sistemassimilares}
+%\cfinput{cap2/trabajossimilares}
+%=========================================================
+\chapter{Marco teórico}
+
+\cfinput{cap3/psicologia}
+\cfinput{cap3/expediente}
+\cfinput{cap3/expedientepsicologico}
+\cfinput{cap3/pruebapsicologica}
+\cfinput{cap3/pruebaproyectiva}
+\cfinput{cap3/htp}
+\cfinput{cap3/sistema}
+\cfinput{cap3/dispositivomovil}
+\cfinput{cap3/arquitectura}
+\cfinput{cap3/patrones}
+\cfinput{cap3/tecnologias}
+\cfinput{cap3/metodologia}
+%=========================================================
+\chapter{Sistema para la aplicación de la prueba proyectiva gráfica HTP en apoyo a psicólogos}
+
+\cfinput{cap4/descripcion}
+\cfinput{cap4/arquitectura}
+\cfinput{cap4/definicionmodulos}
+\cfinput{cap4/caracteristicas}
+\cfinput{cap4/limitaciones}
+\cfinput{cap4/estudioviabilidad}
+%=========================================================
+\chapter{Análisis}
+\cfinput{cap5/requerimientos}
+\cfinput{cap5/modelado}
+
+
+%=========================================================
+\chapter{Diseño}
+\cfinput{cap6/interfaces}
+\cfinput{cap6/bd}
+
+
+%=========================================================
+\begin{thebibliography}{50}
+
+\bibitem{ControlPacientes}Sorgi, M., Dávila, M., Sorgi, A., Sorgi, M. and Dávila, M. (2013). Software Programa Control de Pacientes GRATUITO. [online] Software Médico Web y Gratuito | Control de Pacientes. Disponible en: \url{http://controldepacientes.com/} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{insight}Insight, G. (2013). Insight - quees: software psicologia contabilidad. [online] Grupoinsight.com. Disponible en: \url{http://www.grupoinsight.com/quees.htm} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{jclic}Clic, Z. (n.d.). zonaClic - ¿Qué es JClic?. [online] Clic.xtec.cat. Disponible en: \url{http://clic.xtec.cat/es/jclic/howto.htm} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{psicologia} Janet, P. (1997). Psicología de los sentimientos (1st ed.). México, D.F.: Fondo de Cultura Económica.
+
+\bibitem{expediente}Real Academia Española. (s. f.). Expediente [artículo nuevo]. En Diccionario de la lengua española (avance de la 23.a ed.). Recuperado de \url{http://dle.rae.es/?id=HIBt7mX}
+
+\bibitem{expedientepsicologico}Castañeda, M. (2015). ESPECIFICIDADES DEL EXPEDIENTE CLINICO. DIAGNOSTICO CLINICO Y DIAGNOSTICO GESTALT (1st ed., pp. 4-5). Aguascalientes México: AliatUniversidades. Obtenido de \url{https://psiquemc.files.wordpress.com/2015/04/especificidades-del-expediente-clinico.pdf}
+
+\bibitem{pruebapsicologica1}Mikulic, I. CONSTRUCCION Y ADAPTACION DE PRUEBAS PSICOLOGICAS (1st ed., p. 9). Buenos Aires, Argentina: Universidad de Buenos Aires. Obtenido de \url{http://23118.psi.uba.ar/academica/carrerasdegrado/psicologia/informacion_adicional/obligatorias/059_psicometricas1/tecnicas_psicometricas/archivos/f2.pdf}
+
+\bibitem{pruebapsicologica2}Mikulic, I. CONSTRUCCION Y ADAPTACION DE PRUEBAS PSICOLOGICAS (1st ed., p. 5). Buenos Aires, Argentina: Universidad de Buenos Aires. Obtenido de \url{http://23118.psi.uba.ar/academica/carrerasdegrado/psicologia/informacion_adicional/obligatorias/059_psicometricas1/tecnicas_psicometricas/archivos/f2.pdf}
+
+\bibitem{pruebaproyectiva}Pont, T. Posibilidad de detección de conflicto sexual a través de las Técnicas Proyectivas. Grafologiauniversitaria.com. Disponible en: \url{http://grafologiauniversitaria.com/tecnicas_proyectivas.htm} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{htp}K. ROCHER, CASA, ARBOL, PERSONA: MANUAL DE INTERPRETACION DEL TEST, KAICRON, 2016, p. 186.
+
+\bibitem{sistema}Giraldo, S. (2007). sem. sis 35: ¿Que es un sistema?. Aprendeenlinea.udea.edu.co. Disponible en: \url{http://aprendeenlinea.udea.edu.co/lms/moodle/mod/page/view.php?id=9599} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{dispositivomovil}Baz, A., Ferreira, I., \& Álvarez, M. Dispositivos móviles (1st ed.). Asturias, España: Universidad de Oviedo. Obtenido de \url{http://isa.uniovi.es/docencia/SIGC/pdf/telefonia_movil.pdf}
+
+\bibitem{tablet}tablet computer Definition from PC Magazine Encyclopedia. Pcmag.com. Disponible en: \url{http://www.pcmag.com/encyclopedia/term/52520/tablet-computer} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{clientServ}Márquez, B., \& Zulaica, J. (2004). Capítulo 5. Cliente-Servidor (1st ed.). Cholula, Puebla, México. Obtenido de \url{http://catarina.udlap.mx/u_dl_a/tales/documentos/lis/marquez_a_bm/capitulo5.pdf}
+
+\bibitem{patrondiseno}Jackson, D., \& Devadas, S. (2001). Patrones de diseño (1st ed., p. 1). MIT OpenCourseWare. Obtenido de http://mit.ocw.universia.net/6.170/6.170/f01/pdf/lecture-12.pdf
+
+\bibitem{mvc}Pavón, J. El patrón Modelo-Vista-Controlador (MVC) (1st ed.). Madrid, España: Universidad Complutense Madrid. Obtenido de \url{https://www.fdi.ucm.es/profesor/jpavon/poo/2.14.MVC.pdf}
+
+\bibitem{mvc2} Hernández, U. MVC (Model, View, Controller) explicado.. Codigofacilito.com. Disponible en: \url{https://codigofacilito.com/articulos/mvc-model-view-controller-explicado} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{ios}iOS. n.d. En ``Wikipedia''. Disponible en: \url{https://es.wikipedia.org/wiki/IOS} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{swift}Swift - Apple (MX). Apple. Disponible en: \url{http://www.apple.com/mx/swift/} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{ios}Xcode. n.d. En ``Wikipedia''. Disponible en: \url{https://es.wikipedia.org/wiki/Xcode} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{firebase}Zamora, J. (2016). ¿Qué es Firebase? La mejorada plataforma de desarrollo de Google. El Androide Libre. Disponible en: \url{https://elandroidelibre.elespanol.com/2016/05/firebase-plataforma-desarrollo-android-ios-web.html} [Ultimo acceso 29 Mar. 2017].
+
+\bibitem{scrum}Qué es SCRUM. Proyectos Ágiles. Disponible en: \url{https://proyectosagiles.org/que-es-scrum/}[Ultimo acceso 29 Mar. 2017].
+
+\bibitem{voyo}VOYO VBOOK V3 Apollo version. En.myvoyo.com. Disponible en: \url{http://en.myvoyo.com/chanpin/603.shtml} [Ultimo acceso 06 Abr. 2017].
+
+\bibitem{ipad}iPad Pro - Especificaciones. Apple (México). Disponible en: \url{http://www.apple.com/mx/ipad-pro/specs/} [Ultimo acceso 06 Abr. 2017].
+
+\bibitem{yoga}Yoga Book con Android. Shop.lenovo.com. Disponible en: \url{http://shop.lenovo.com/mx/es/tablets/lenovo/yoga-book/yoga-book-android/} [Ultimo acceso 06 Abr. 2017].
+
+%\bibitem{1} M. Sarl  i Gallart y M. Mart nez Sais, «Portas de Paidopsiquiatria,» 2009 2007. [En línea]. Available: http://www.paidopsiquiatria.cat/files/tests\_proyectivos.pdf. [Último acceso: 21 Septiembre 2016]
+
+%\bibitem{2} «Solo Psicologia,» 17 junio 2010. [En línea]. Available: http://www.solopsicologia.com/tecnicas-proyectivas/. [Último acceso: 21 septiembre 2016].
+\end{thebibliography}
+%=========================================================
+\end{document}
+

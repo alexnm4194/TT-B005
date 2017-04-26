@@ -1,0 +1,107 @@
+%Crear Nota
+\begin{UseCase}{CU7}{Crear Cuestionario}{
+    El psicólogo podrá crear cuestionarios de forma dinámica en los cueales podrá poner preguntas abiertas, cerradas y de opción multiple para apliarle a sus diferentes pacientes.
+	}
+	\UCitem{Versión}{1.0 - 11/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Crear cuestionarios.}
+	\UCitem{Entradas}{Formulario de cuestionarios}
+	\UCitem{Salidas}{Cuestionario de aplicación}
+	\UCitem{Precondiciones}{
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN25}{ Formato Nombres}
+            \item \BRref{RN27}{ Tipos de preguntas}
+            \item \BRref{RN28}{ Ignorar campos}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}
+    	    \item \MSGref{MSG1}{Operación exitosa}
+    	    \item \MSGref{MSG2}{Operación fallida}
+    	    \item \MSGref{MSG4}{Confirmación}
+    	    \item \MSGref{MSG6}{Formato incorrecto registro}
+    	\end{itemize}
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cuestionarios}.
+    \UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Crear cuestionario}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario}.
+    \UCpaso[\UCactor] Se introduce el nombre en el campo.
+    \UCpaso[\UCactor] Se introduce el texto en el campo pregunta 1. \Trayref{C}\Trayref{C2} \label{CU7Regresa2}
+    \UCpaso[\UCactor] Se introduce el texto en el campo pregunta 2. \Trayref{C}\Trayref{C2}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Guardar}. \label{CU7Regresa} \Trayref{D} \Trayref{R}
+    \UCpaso Verifica el campo de nombre. \Trayref{A}
+    	\\\BRref{RN25}{ Formato Nombres}
+    \UCpaso Ignora los campos vacios.
+        \\\BRref{RN28}{ Ignorar campos}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Se guarda el cuestionario. \Trayref{B}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra la pantalla \IUref{UIC}{Pantalla Cuestionarios}.
+    %\UCpaso Continúa en el \UCref{CU23}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} con el campo en color rojo, conservando los datos y el texto ingresado.
+	\UCpaso Continua en el paso \ref{CU7Regresa} del \UCref{CU7}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{B}{No se pudo crear el cuestionario}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU7Regresa} del \UCref{CU7}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{Pregunta tipo cerrada}
+    \UCpaso[\UCactor] Selecciona el check \IUbutton{carrada} para la pregunta.
+    \UCpaso Se habilitan los campos para ingresar respuestas.
+        \\\BRref{RN27}{ Tipos de preguntas}
+    \UCpaso Se ingresa el texto en los campos de respuestas.
+    \UCpaso Continua en el paso \ref{CU7Regresa2} del \UCref{CU7}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C2}{Pregunta tipo Multiple}
+    \UCpaso[\UCactor] Selecciona el check \IUbutton{Multiple} para la pregunta.
+    \UCpaso Se habilitan los campos para ingresar respuestas.
+        \\\BRref{RN27}{ Tipos de preguntas}
+    \UCpaso Se ingresa el texto en los campos de respuestas.
+    \UCpaso Continua en el paso \ref{CU7Regresa2} del \UCref{CU7}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{Agregar preguntas}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Nueva pregunta}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} con el campo del nombre conservando los datos.
+    \UCpaso Continua en el paso \ref{CU7Regresa2} del \UCref{CU7}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Nuevo Cuestionario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU7Regresa} del \UCref{CU7}
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

@@ -1,0 +1,154 @@
+\section{Requerimientos}
+
+\subsection{Requerimientos funcionales}
+
+\noindent
+ID: RF-SAP1\\
+Nombre: Registro Psicólogo\\
+Descripción: El psicólogo debe capturar los siguientes datos en el sistema, para crear su usuario
+dentro de este. Se validarán los datos para que sean correctos y no exista algún otro psicólogo con la misma cédula profesional y/o usuario.
+
+\begin{itemize}
+    \item Nombre
+    \item Primer Apellido
+    \item Segundo Apellido *
+    \item Cédula profesional
+    \item Fecha de nacimiento
+    \item Correo electrónico
+    \item Confirmar correo electrónico
+    \item Teléfono *
+    \item Teléfono celular *
+    \item Contraseña
+    \item Confirmar contraseña
+    \item Nota: * campos opcionales.
+\end{itemize}
+\vspace{4cm}
+\\
+
+\noindent
+ID: RF-SAP2\\
+Nombre: Registro Pacientes\\
+Descripción: El psicólogo debe capturar los siguientes datos en el sistema, para crear el expediente del paciente dentro de este. Se validarán los datos para que sean correctos.
+
+\begin{itemize}
+    \item Nombre
+    \item Primer Apellido
+    \item Segundo Apellido *
+    \item Fecha de nacimiento
+    \item Boleta institucional IPN
+    \item Correo electrónico
+    \item Teléfono *
+    \item Teléfono celular *
+    \item Calle
+    \item No. de casa
+    \item Colonia
+    \item Código postal
+    \item Municipio o Delegación
+    \item Estado
+    \item Enfermedades*
+    \item Medicamentos*
+    \item Nota: * campos opcionales.
+\end{itemize}
+\\
+
+\noindent
+ID: RF-SAP3\\
+Nombre: Generar cuestionarios\\
+Descripción: El psicólogo deberá poder generar cuestionarios de forma dinámica para ser aplicados a los pacientes cuando así se le consideré conveniente.
+\\
+
+\noindent
+ID: RF-SAP4\\
+Nombre: Generar reportes\\
+Descripción: El sistema deberá generar reportes sobre el uso y cantidad de pruebas que se han realizado en un periodo de tiempo, al igual que el numeró de pacientes relacionado a la aplicación de las pruebas.
+\\
+
+\noindent
+ID: RF-SAP5\\
+Nombre: Desplegar módulos de la prueba HTP\\
+Descripción: El sistema deberá desplegar un menú el cual contenga los tres módulos que componen la prueba HTP para que el psicólogo seleccione el que realizará el paciente.
+\\
+
+\noindent
+ID: RF-SAP6\\
+Nombre: Analizar dibujo de la casa de HTP\\
+Descripción: Se deberán encontrar patrones y elementos dentro del esquema que correspondan a la imagen de una casa para que con base en ellos se busquen coincidencias con los rasgos descritos por el autor de la prueba HTP. 
+\\
+
+\noindent
+ID: RF-SAP7\\
+Nombre: Analizar dibujo del árbol de HTP\\
+Descripción: Se deberán encontrar patrones y elementos dentro del esquema que correspondan a la imagen de un árbol para que con base en ellos se busquen coincidencias con los rasgos descritos por el autor de la prueba HTP. 
+\\
+
+\noindent
+ID: RF-SAP8\\
+Nombre: Analizar dibujo de la persona de HTP\\
+Descripción: Se deberán encontrar patrones y elementos dentro del esquema que correspondan a la imagen de una persona para que con base en ellos se busquen coincidencias con los rasgos descritos por el autor de la prueba HTP. 
+\\
+
+\noindent
+ID: RF-SAP9\\
+Nombre: Capturar anotaciones (observaciones)\\
+Descripción: Dentro del sistema el psicólogo deberá tener un espacio para poder tomar notas, escribir párrafos en contexto libre que el consideré oportunos.
+\\
+
+\noindent
+ID: RF-SAP10\\
+Nombre: Administrar pacientes\\
+Descripción: El registro de los pacientes deberá poder ser modificado en caso que existiera algún error en su captura y/o faltará algún dato por capturar.
+\\
+
+\noindent
+ID: RF-SAP11\\
+Nombre: Administrar perfil del psicólogo\\
+Descripción: El psicólogo podrá modificar la información de su perfil.
+\\
+
+\noindent
+ID: RF-SAP12\\
+Nombre: Controlar acceso\\
+Descripción: El  sistemas  solo  deberá  permitir  el  acceso a un psicólogo a la vez,  a  los  expedientes  de  cada uno de sus paciente, de igual forma la información de cada expediente deberá estar protegida por una contraseña.
+\\
+\newpage
+\subsection{Requerimientos no funcionales}
+
+\begin{NFRequieriments}
+\NFRitem{1}{Mantenibilidad}{
+\begin{itemize}
+\item Todo nuevo requerimiento funcional o no funcional debe ser analizado para poder apreciar el impacto que éste tendrá sobre el sistema y proceso de negocio.
+\end{itemize}
+}
+
+\NFRitem{2}{Eficiencia}{
+\begin{itemize}
+\item Toda funcionalidad local del sistema y transacción de negocio debe responder al usuario en menos de 10 segundos.
+\item El sistema seguirá trabajando aun sin conexión a internet, en cuanto se restablezca la conexión se sincronizarán las base de datos local con la base de datos en la nube.
+\end{itemize}
+}
+
+\NFRitem{3}{Seguridad}{
+\begin{itemize}
+\item Los datos personales de los pacientes estarán bajo un cifrado AES.
+\item La contraseña del psicólogo estará bajo un cifrado MD5, aplicado tres veces al dato.
+\item Los formularios para ingresar datos estarán validados por tipo de dato y longitud.
+\end{itemize}
+}
+
+\NFRitem{4}{Usabilidad}{
+\begin{itemize}
+\item El tiempo de aprendizaje del sistema por un usuario deberá ser menor a dos semanas.
+\item El sistema debe proporcionar mensajes de error que sean informativos y orientados a usuario final.
+\item El sistema debe contar con una pantalla para contacto con los desarrolladores para cualquier tipo de aclaración.
+\item La aplicación debe de garantizar la adecuada visualización en tabletas con una dimensión en pantalla de 12.9 pulgadas.
+\item El sistema debe poseer interfaces gráficas bien formadas.
+\end{itemize}
+}
+
+\NFRitem{5}{Extensibilidad}{
+\begin{itemize}
+\item El sistema podrá tener un crecimiento futuro ya que estará programado por módulos para permitir la integración de nuevas pruebas.
+\end{itemize}
+}
+
+\end{NFRequieriments}

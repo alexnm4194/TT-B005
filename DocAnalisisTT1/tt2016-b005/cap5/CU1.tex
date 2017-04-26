@@ -1,0 +1,146 @@
+%-------------------- COMIENZA descripción del caso de uso.
+
+\begin{UseCase}{CU1}{Registrar psicólogo}{
+		El psicólogo proporcionará los datos personales solicitados por el sistema, los cuales están descritos en el modelo conceptual del negocio.
+	}
+	\UCitem{Versión}{2.0 - 08/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Registrar al psicólogo en el sistema.}
+	\UCitem{Entradas}{Formulario de registro}
+	\UCitem{Salidas}{Cuenta sin verificar del psicólogo}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item La cédula profesional del psicólogo no debe estar registrada en el sistema.
+            \item El correo electrónico no debe estar registrado en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	    \begin{itemize}
+            \item Se creará la cuenta del usuario.
+            \item El estado de la cuenta será el de ''Cuenta No verificada".
+        \end{itemize}
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN1}{Datos requeridos}
+	        \item \BRref{RN2}{Datos correctos}
+	        \item \BRref{RN3}{Unicidad de elementos}
+	        \item \BRref{RN5}{Datos obtenidos psicólogo}
+	        \item \BRref{RN9}{Enteros Positivos}
+	        \item \BRref{RN10}{Estados de la cuenta}
+	        \item \BRref{RN12}{Usuario}
+	        \item \BRref{RN16}{Confirmación de datos}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}	
+    	    \item \MSGref {MSG1}{Operación exitosa}
+    	    \item \MSGref {MSG2}{Operación fallida}
+    	    \item \MSGref {MSG4}{Confirmación}
+    	    \item \MSGref {MSG5}{Registro repetido}
+    	    \item \MSGref {MSG6}{Formato incorrecto registro}
+    		\item \MSGref {MSG8}{Dato requerido}
+    		\item \MSGref {MSG10}{Datos no coinciden}
+    		\item \MSGref {MSG13}{Correo de verificación}
+    	\end{itemize}
+	}
+\end{UseCase}
+
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Registrarse}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario}
+	\UCpaso[\UCactor] Llena los campos con la información solicitada por el sistema.
+	\\\BRref{RN5}{Datos obtenidos psicólogo}
+	\\\BRref{RN12}{Usuario}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Registrar}.\Trayref{R}  \label{CU1Regresa}
+	\UCpaso Verifica que los campos requeridos no estén vacíos.\Trayref{A}
+	    \\\BRref{RN1}{Datos requeridos}
+	\UCpaso Verifica que que todos campos tengan un formato valido.\Trayref{B}
+	    \\\BRref{RN2}{Datos correctos}
+	    \\\BRref{RN9}{Enteros Positivos}
+	\UCpaso Verifica que el correo coincida con el correo de verificación.\Trayref{C}
+	    \\\BRref{RN16}{Confirmación de datos}
+	\UCpaso Verifica que la contraseña coincida con la contraseña de verificación.\\\Trayref{C} 
+	    \\\BRref{RN16}{Confirmación de datos}
+	\UCpaso Verifica que la cédula profesional no exista en el sistema.\Trayref{D}\Trayref{G}
+	    \\\BRref{RN3}{Unicidad de elementos}
+	\UCpaso Verifica que el correo no exista en el sistema.\Trayref{D}
+	    \\\BRref{RN3}{Unicidad de elementos}
+	\UCpaso Se crea la cuenta en estado ''Cuenta NO verificada".\Trayref{E}
+	    \\\BRref{RN10}{Estados de la cuenta} 
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Se envía un correo para la verificación de la cuenta.\Trayref{F}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref {MSG13}{Correo de verificación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+	\UCpaso Muestra la pantalla \\\IUref{UILogin}{Pantalla control de acceso}
+	\UCpaso Continua en el paso 1 del \UCref{CU26}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{EL campo se encuentra vacío}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG8}{Dato requerido}}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} con el campo en color azul.
+	\UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} con el campo en color rojo y conservando los datos ingresados.
+	\UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{Los campos no coinciden}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG10}{Datos no coinciden}}.
+    \UCpaso Se limpian ambos campos.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{El registro ya existe en el sistema}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG5}{Registro repetido}}.
+    \UCpaso Se limpia el campo.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{E}{No se pudo crear la cuenta}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{F}{No se pudo enviar el correo de verificación de cuenta}
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{G}{No hay conexión a internet}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UINU}{Pantalla registro nuevo usuario} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU1Regresa} del \UCref{CU1}
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

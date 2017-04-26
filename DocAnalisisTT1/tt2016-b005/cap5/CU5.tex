@@ -1,0 +1,41 @@
+%Buscar paciente
+\begin{UseCase}{CU5}{Visualizar perfil del paciente}{
+    El psicólogo accesedará al menú de acciones para cada paciente y a la información del mismo.
+	}
+	\UCitem{Versión}{1.0 - 12/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{El psicólogo vea la información del paciente.}
+	\UCitem{Entradas}{}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El expediente del paciente debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	}	
+	\UCitem{Mensajes}{
+	}
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Ver Pacientes}.
+    \UCpaso Muestra \IUref{UIVP}{Pantalla Ver pacientes}. \Trayref{R}
+    \UCpaso[\UCactor] Selecciona al paciente.
+    \UCpaso Muestra la pantalla \\\IUref{UIP}{Pantalla Información paciente}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+\begin{UCtrayectoriaA}{R}{Se oprime regresar}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

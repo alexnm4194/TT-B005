@@ -1,0 +1,84 @@
+%Crear Nota
+\begin{UseCase}{CU21}{Crear Nota}{
+    El psicólogo podrá crear notas, que le servirán para tener observaciones y cualquier cosa que el consideré sea necesario anotar.
+	}
+	\UCitem{Versión}{1.0 - 10/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Tener un espacio para anotar lo que el psicolo consideré se deba anotar.}
+	\UCitem{Entradas}{}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN25}{ Formato Nombres}
+	        \item \BRref{RN26}{ Notas del paciente}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}
+    	    \item \MSGref{MSG1}{Operación exitosa}
+    	    \item \MSGref{MSG2}{Operación fallida}
+    	    \item \MSGref{MSG4}{Confirmación}
+    	    \item \MSGref{MSG6}{Formato incorrecto registro} 
+    	\end{itemize}
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Notas}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Notas}. \Trayref{R}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Crear Nota}.
+    \UCpaso Despliega en pantalla el espacio para anotar
+    	\\\IUref{UIEN}{Pantalla Espacio nota}.
+    \UCpaso[\UCactor] Se introduce el nombre en el campo.
+    \UCpaso[\UCactor] Se introduce el texto que se desea.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Guardar}. \label{CU21Regresa}
+    \UCpaso Verifica el campo de nombre. \Trayref{A}
+    	\\\BRref{RN25}{ Formato Nombres}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Se guarda la nota. \Trayref{B}
+    	\\\BRref{RN25}{ Formato Nombres}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra la pantalla \IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso Continúa en el \UCref{CU23}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIEN}{Pantalla Espacio nota} con el campo en color rojo, conservando los datos y el texto ingresados.
+	\UCpaso Continua en el paso \ref{CU21Regresa} del \UCref{CU21}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{B}{No se pudo crear la nota}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEN}{Pantalla Espacio nota} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU21Regresa} del \UCref{CU21}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra \IUref{UIP}{Pantalla Información paciente}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UIEN}{Pantalla Espacio nota} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU21Regresa} del \UCref{CU21}
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

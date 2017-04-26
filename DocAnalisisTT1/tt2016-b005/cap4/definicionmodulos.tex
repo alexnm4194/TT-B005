@@ -1,0 +1,44 @@
+\section{Definición de módulos}
+El sistema cuenta con 6 módulos principales los cuales son:
+\newline
+\begin{itemize}
+    \item Administrador de autenticación de usuarios
+    \item Gestor de usuarios
+    \item Gestor de pacientes
+    \item Gestor de cuestionarios
+    \item Gestor de reportes
+    \item Gestor de pruebas proyectivas
+\end{itemize}
+
+y una base de datos en la nube utilizando el servicio de \textit{Firebase}, en conjunto a una base de datos local utilizando SQLite.
+
+\subsection{Administrador de autenticación de usuarios}
+Este modulo se encargará de permitir o negar el acceso a usuarios psicólogos utilizando las herramientas de autenticación que provee \textit{Firebase}.
+
+Así como también se encargará de permitir la creación de nuevas cuentas a los psicólogos que utilizan el sistema.
+\newline
+\subsection{Gestor de usuarios}
+El modulo gestor de usuarios se encargara de poder modificar la información del psicólogo como nombre de usuario, contraseña, correo, etc. permitiendo tener un sistema flexible ante posibles errores humanos.
+\newline
+\subsection{Gestor de pacientes}
+El gestos de pacientes permitirá mantener actualizada la información de cada paciente que tiene el psicólogo permitiendo hacer modificaciones en nombre, apellidos, correo, teléfono, dirección, etc.
+
+También tendrá el control completo de los expedientes psicológicos los cuales estarán protegidos mediante contraseñas por seguridad, estos expedientes podrán ser consultados, actualizados y dados de baja.
+\newline
+\subsection{Gestor de cuestionarios}
+El modulo de cuestionarios será utilizado por el psicólogo para poder crear cuestionarios personalizados para cada paciente según le convenga, así como también podrá generar plantillas de cuestionarios y/o reutilizar preguntas anteriormente guardadas.
+
+Para este modulo el paciente tendrá interacción con el sistema ya que el cuestionario previamente elaborado sera contestado por el mismo paciente evitando sobrecargar las actividades que realiza el psicólogo.
+\newline
+\subsection{Gestor de pruebas proyectivas}
+Este es uno de los módulos mas complejos del sistema ya que por si solo es un conector entre el sistema y las pruebas proyectivas que serán utilizadas por el psicólogo, para este sistema este modulo serán implementados tres submódulos los cuales corresponden a los tres dibujos que solicita la prueba HTP que son Casa, Árbol y Persona. Y con los cuales el paciente tendrá relación ya que este debe realizar la prueba utilizando el sistema.
+
+Cada dibujo es un submódulo separado ya que el análisis cambia según la figura, Por lo que el modulo Gestor de pruebas proyectivas se vuelve un contenedor de submódulos los cuales pueden agregarse mas o menos sin afectar el sistema.
+\newline
+\subsection{Gestor de reportes}
+Este modulo Gestos de reportes permite entregarle al psicólogo reportes individuales por paciente de los resultados de los cuestionarios que ha realizado, así como de las pruebas que se le han aplicado, permitiendo crear anotaciones en los reportes para futuras revisiones y/o referencias.
+
+También es posible generar anotaciones de manera libre sin necesidad de estar dentro de un reporte, estas anotaciones junto con los reportes son almacenados en conjunto a las pruebas y cuestionarios realizados generando así el expediente psicológico del paciente.
+
+El modulo permitirá generar reportes del estado general del sistema mostrando el total de pruebas y cuestionarios aplicados, el total de pacientes atendidos, entre otros puntos.
+\newline

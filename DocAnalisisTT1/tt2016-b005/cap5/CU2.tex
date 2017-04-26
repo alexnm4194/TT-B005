@@ -1,0 +1,127 @@
+%-------------------- COMIENZA descripción del caso de uso.
+
+\begin{UseCase}{CU2}{Editar información del psicólogo}{
+		El psicólogo proporcionará los datos personales solicitados por el sistema, los cuales desea modificar dentro de su cuenta.
+	}
+	\UCitem{Versión}{1.5 - 09/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Modificar la información del psicólogo en el sistema.}
+	\UCitem{Entradas}{Formulario de editar información psicólogo}
+	\UCitem{Salidas}{Información actualizada}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El psicólogo debe estar registrado en el sistema.
+            \item La cuenta debe estar verificada.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	    \begin{itemize}
+            \item La nueva información quedará almacenada en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN1}{Datos requeridos}
+	        \item \BRref{RN2}{Datos correctos}
+	        \item \BRref{RN5}{Datos obtenidos psicólogo}
+	        \item \BRref{RN16}{Confirmación de datos}
+	        \item \BRref{RN17}{Restricción de cambios}
+    		\item \BRref{RN18}{Cambio en la contraseña}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}	
+    	    \item \MSGref {MSG1}{Operación exitosa}
+    	    \item \MSGref {MSG2}{Operación fallida}
+    	    \item \MSGref {MSG4}{Confirmación}
+    	    \item \MSGref {MSG6}{Formato incorrecto registro}
+    		\item \MSGref {MSG8}{Dato requerido}
+    		\item \MSGref {MSG10}{Datos no coinciden}
+    	\end{itemize}
+	}
+\end{UseCase}
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Editar perfil}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} con la información que se tiene almacenada en la base de datos.
+    \UCpaso Restringe los cambios en algunos campos.
+        \\\BRref{RN17}{Restricción de cambios}
+    \UCpaso[\UCactor] Edita los campos que se desea cambiar.\label{CU2Regresa}
+    	\\\BRref{RN5}{Datos obtenidos psicólogo} 
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Actualizar}.\Trayref{R} 
+	\UCpaso Verifica que los campos requeridos no estén vacíos.\Trayref{A}
+	    \\\BRref{RN1}{Datos requeridos}
+	\UCpaso Verifica que que todos campos tengan un formato valido.\Trayref{B}
+	    \\\BRref{RN2}{Datos correctos}
+	\UCpaso Verifica que el campo de contraseña actual este vacío.\Trayref{C}
+	\UCpaso Se actualiza la información de la cuenta.\Trayref{E} \Trayref{F} \label{CU2Regresa2}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{EL campo se encuentra vacío}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG8}{Dato requerido}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} con el campo en color azul.
+    \UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} con el campo en color rojo y conservando los datos ingresados.
+	\UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{El campo de contraseña no esta vacío}
+    \UCpaso Verifica que que todos campos tengan un formato valido.\Trayref{B}
+	    \\\BRref{RN2}{Datos correctos}
+	\UCpaso Verifica que la nueva contraseña coincida con la contraseña de verificación.\Trayref{D}
+	    \\\BRref{RN16}{Confirmación de datos}
+	\UCpaso Verifica que la contraseña actual coincida con la registrada en la base de datos.\Trayref{D}\Trayref{F}
+	    \\\BRref{RN18}{Cambio en la contraseña}
+	\UCpaso Continua en el paso \ref{CU2Regresa2} del \UCref{CU2}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{Los campos no coinciden}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG10}{Datos no coinciden}}.
+    \UCpaso Se limpia el o los campos en conflicto.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} conserva los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{E}{No se pudo actualizar la información de la cuenta}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} con la información que se tiene almacenada en la base de datos.
+    \UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{F}{No hay conexión a internet}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Editar perfil} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU2Regresa} del \UCref{CU2}
+\end{UCtrayectoriaA}
+		
+%-------------------------------------- TERMINA descripción del caso de uso.

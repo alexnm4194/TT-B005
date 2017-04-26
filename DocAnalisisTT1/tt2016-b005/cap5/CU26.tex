@@ -1,0 +1,107 @@
+%-------------------- COMIENZA descripción del caso de uso.
+
+\begin{UseCase}{CU26}{Iniciar de sesión}{
+		El psicólogo inicia sesión con el correo electrónico que registro al crear su cuenta.
+	}
+	\UCitem{Versión}{1.8 - 08/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Permitir al psicólogo acceder al sistema.}
+	\UCitem{Entradas}{Formulario de inicio de sesión}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El psicólogo debe estar registrado en el sistema.
+            \item La cuenta debe estar verificada.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN1}{Datos requeridos}
+	        \item \BRref{RN2}{Datos correctos}
+	        \item \BRref{RN6}{Correo electrónico valido}
+	        \item \BRref{RN11}{Cuenta verificada}
+	        \item \BRref{RN15}{Acceso al sistema}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}	
+    	    \item \MSGref {MSG2}{Operación fallida}
+    		\item \MSGref {MSG7}{Contraseña de inicio de sesión}
+    		\item \MSGref {MSG8}{Dato requerido}
+    		\item \MSGref {MSG9}{Dato incorrecto}
+    		\item \MSGref {MSG11}{Cuenta no verificada}
+    		\item \MSGref {MSG12}{Formato correo electrónico de inicio de sesión}
+    	\end{itemize}
+	}
+\end{UseCase}
+
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+	\UCpaso[\UCactor] Introduce su correo electrónico y Contraseña en el sistema vía la \\\IUref{UILogin}{Pantalla control de acceso}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Ingresar}.\label{CU26Regresa}
+	\UCpaso Verifica que el correo electrónico no este vacío.
+	    \\\BRref{RN1}{Datos requeridos} \Trayref{A}
+	\UCpaso Verifica que la contraseña no este vacía.
+	    \\\BRref{RN1}{Datos requeridos} \Trayref{A}
+	\UCpaso Verifica que el correo electrónico tenga un formato valido.
+	    \\\BRref{RN6}{Correo electrónico valido} \Trayref{B}
+	\UCpaso Verifica que la contraseña tenga el formato correcto.
+	    \\\BRref{RN2}{Datos correctos} \Trayref{C}
+	\UCpaso Verifica que el usuario exista en el sistema. \Trayref{F}
+	    \\\BRref{RN15}{Acceso al sistema} \Trayref{D}
+	\UCpaso Verifica que la contraseña coincida con la contraseña registrada en el sistema para el usuario que se ingreso.
+	    \\\BRref{RN15}{Acceso al sistema} \Trayref{D}
+	\UCpaso Verifica que la cuenta este verificada.
+	    \\\BRref{RN11}{Cuenta verificada} \Trayref{E}
+	\UCpaso Permite el acceso al sistema muestra la                      \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{EL campo se encuentra vacío}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG8}{Dato requerido}}.
+	\UCpaso Se limpia el campo de contraseña.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} con el campo en color azul.
+	\UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{El correo electrónico no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG12}{Formato correo electrónico de inicio de sesión}}.
+    \UCpaso Se limpia el campo de contraseña.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} con el campo en color rojo.
+	\UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{La contraseña contiene caracteres no validos}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG7}{Contraseña de inicio de sesión}}.
+    \UCpaso Se limpia el campo de contraseña.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} con el campo en color rojo y conservando el correo ingresado.
+	\UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{El sistema no encontró coincidencia}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG9}{Dato incorrecto}}.
+    \UCpaso Se limpia el campo de contraseña.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} conservando el correo ingresado.
+	\UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{E}{La cuenta no esta verificada}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG11}{Cuenta no verificada}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} conservando los datos ingresados.
+	\UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{F}{No hay conexión a internet}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UILogin}{Pantalla control de acceso} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU26Regresa} del \UCref{CU26}
+\end{UCtrayectoriaA}
+		
+%-------------------------------------- TERMINA descripción del caso de uso.

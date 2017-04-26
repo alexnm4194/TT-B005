@@ -1,0 +1,138 @@
+\noindent
+Mensajes usados en el sistema, que se usan para informar al usuario mediante la interfaz de ciertas situaciones o eventos que ocurren en el sistema y pueden ser de los siguientes tipos: \\
+\begin{itemize}	
+	\item \textbf{Notificación} : Estos mensajes se utilizan para indicar que la operación solicitada por el usuario se ejecutó correctamente.
+	\item \textbf{Alerta} : Estos mensajes se utilizan para indicar alguna advertencia sobre la operación.
+	\item \textbf{Error} : Estos mensajes se utilizan para indicar que ha ocurrido un error en la operación solicitada.
+\end{itemize}	
+
+\noindent
+Varios mensajes se encuentran parametrizados. Es decir cuando algún mensaje es recurrente, hay palabras que pueden ser sustituidas por otras para transformar el mensaje a la situación. Parámetros más comunes: \\
+
+\begin{description}
+	\item[ARTÍCULO: ] Se refiere a un artículo el cual puede ser DETERMINADO (El | La | Lo | Los | Las) o INDETERMINADO (Un | Una | Uno | Unos |Unas).
+	\item[CAMPO: ] Se refiere a un campo del formulario. Por lo regular es el nombre de un atributo en una entidad.
+	\item[OPERACIÓN: ] Se refiere a una acción que se debe realizar sobre los datos de una o varias entidades. Por ejemplo: registrar, crear, modificar y eliminar.
+	\item[CAUSA: ] Un razón por lo que la operación aconteció de cierta manera.
+\end{description}
+
+
+\begin{Message}{MSG1}{Operación exitosa} 
+	\MSGitem[Tipo: ] Notificación
+	\MSGitem[Objetivo: ] Notificar al actor que la operación se ha realizado de forma exitosa.
+	\MSGitem[Redacción: ] DETERMINADO operación de OPERACIÓN ha sido exitosa.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+			\item OPERACIÓN: Es la acción que el actor solicitó realizar.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG2}{Operación fallida} 
+	\MSGitem[Tipo: ] Notificación
+	\MSGitem[Objetivo: ] Notificar al actor que la operación no se ha podido realizar. 
+	\MSGitem[Redacción: ] DETERMINADO operación de OPERACIÓN NO ha sido exitosa por CAUSA.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+			\item OPERACIÓN: Es la acción que el actor solicitó realizar.
+			\item CAUSA: Razón por la cual no se pudo realizar la operación, esta es opcional.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG3}{No existe información} 
+	\MSGitem[Tipo: ] Notificación
+	\MSGitem[Objetivo: ] Notificar al actor que aún no existe información registrada en el sistema.
+	\MSGitem[Redacción: ] No se ha encontrado información que coincida con la búsqueda.
+\end{Message}
+
+\begin{Message}{MSG4}{Confirmación} 
+	\MSGitem[Tipo: ] Alerta
+	\MSGitem[Objetivo: ] Rectificar que el usuario desea continuar con la operación.
+	\MSGitem[Redacción: ] ¿Seguro que deseas continuar?
+\end{Message}
+
+\begin{Message}{MSG5}{Registro repetido} 
+	\MSGitem[Tipo: ] Alerta
+	\MSGitem[Objetivo: ] Notificar al actor que la entidad que desea registrar ya existe en el sistema.
+	\MSGitem[Redacción: ] DETERMINADO CAMPO ya esta en uso dentro del sistema.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+			\item CAMPO: Dato del formulario que debe ser único.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG6}{Formato incorrecto registro} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que el dato no tiene el tipo solicitado.
+	\MSGitem[Redacción: ] DETERMINADO campo tienen formato incorrecto.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG7}{Contraseña inicio de sesión} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que el dato tiene caracteres no permitidos por el sistema.
+	\MSGitem[Redacción: ] la contraseña contiene caracteres no permitidos.
+\end{Message}
+
+\begin{Message}{MSG8}{Dato requerido} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que el dato es requerido y se ha omitido.
+	\MSGitem[Redacción: ] DETERMINADO CAMPO es requerido.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+			\item CAMPO: Campo del formulario.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG9}{Dato incorrecto} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que la contraseña o el usuario que introdujo no fue correcta.
+	\MSGitem[Redacción: ] Correo y/o contraseña incorrectos.
+\end{Message}
+
+\begin{Message}{MSG10}{Datos no coinciden} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que los datos que se requieren confirmar no son iguales.
+	\MSGitem[Redacción: ] DETERMINADO CAMPO no coincide con DETERMINADO CAMPO.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item DETERMINADO: Artículo determinado más la operación que se realizo.
+			\item CAMPO: Campo del formulario.
+		\end{itemize}
+\end{Message}
+
+\begin{Message}{MSG11}{Cuenta no verificada} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que su cuenta no ha sido verificada.
+	\MSGitem[Redacción: ] Su cuenta no ha sido verificada.
+\end{Message}
+
+\begin{Message}{MSG12}{Formato correo electrónico inicio de sesión} 
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que el correo electrónico que introdujo no tiene el formato correcto.
+	\MSGitem[Redacción: ] El correo electrónico no tiene un formato correcto.
+\end{Message}
+
+\begin{Message}{MSG13}{Correo de verificación} 
+	\MSGitem[Tipo: ] Notificación
+	\MSGitem[Objetivo: ] Notificar al actor que se le enviará un correo de verificación al correo que proporcionó en el registro.
+	\MSGitem[Redacción: ] Se enviará un mensaje de verificación a tu correo.
+\end{Message}
+
+\begin{Message}{MSG14}{Formato de búsqueda}
+	\MSGitem[Tipo: ] Error
+	\MSGitem[Objetivo: ] Notificar al actor que el dato no tiene el tipo solicitado.
+	\MSGitem[Redacción: ] El campo de búsqueda no tiene el formato correcto CAUSA.
+	\MSGitem[Parámetros: ] El mensaje se muestra con base en los siguientes parámetros:
+		\begin{itemize}	
+			\item CAUSA: Razón por la cual no se pudo realizar la operación, esta es opcional.
+			%SE USARON CARÁCTERES NO VALIDOS
+			%HAY LETRAS Y NÚMEROS
+		\end{itemize}
+\end{Message}

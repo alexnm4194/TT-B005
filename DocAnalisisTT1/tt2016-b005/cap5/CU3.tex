@@ -1,0 +1,116 @@
+%-------------------- COMIENZA descripción del caso de uso.
+
+\begin{UseCase}{CU3}{Registrar paciente}{
+		El psicólogo proporcionará los datos personales solicitados por el sistema, los cuales están descritos en el modelo conceptual del negocio.
+	}
+	\UCitem{Versión}{1.3 - 09/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Registrar un paciente.}
+	\UCitem{Entradas}{Formulario de registro de pacientes}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El paciente no debe estar registrado en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	    \begin{itemize}
+            \item Se creará un expediente nuevo para el paciente en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN1}{Datos requeridos}
+	        \item \BRref{RN2}{Datos correctos}
+	        \item \BRref{RN3}{Unicidad de elementos}
+	        \item \BRref{RN4}{Datos obtenidos paciente}
+	        \item \BRref{RN9}{Enteros Positivos}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}	
+    	    \item \MSGref {MSG1}{Operación exitosa}
+    	    \item \MSGref {MSG2}{Operación fallida}
+    	    \item \MSGref {MSG4}{Confirmación}
+    	    \item \MSGref {MSG5}{Registro repetido}
+    	    \item \MSGref {MSG6}{Formato incorrecto registro}
+    		\item \MSGref {MSG8}{Dato requerido}
+    	\end{itemize}
+	}
+\end{UseCase}
+
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Nuevo Paciente}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente}.
+	\UCpaso[\UCactor] Llena los campos con la información solicitada por el sistema.\label{CU3Regresa}
+	\\\BRref{RN4}{Datos obtenidos paciente}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Registrar}.\Trayref{R}
+	\UCpaso Verifica que los campos requeridos no estén vacíos.\Trayref{A}
+	    \\\BRref{RN1}{Datos requeridos}
+	\UCpaso Verifica que que todos campos tengan un formato valido.\Trayref{B}
+	    \\\BRref{RN2}{Datos correctos}
+	    \\\BRref{RN9}{Enteros Positivos}
+	\UCpaso Verifica que la boleta no exista en el sistema.\Trayref{C}\Trayref{E}
+	    \\\BRref{RN3}{Unicidad de elementos}
+	\UCpaso Se crea el expediente del paciente.\Trayref{D}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG1}{Operación exitosa}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{EL campo se encuentra vacío}
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG8}{Dato requerido}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} con el campo en color azul y conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{El campo no tiene el formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG6}{Formato incorrecto registro}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} con el campo en color rojo y conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{El registro ya existe en el sistema}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG5}{Registro repetido}}.
+    \UCpaso Se limpia el campo.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} conservando los demás datos ingresados.
+	\UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{D}{No se pudo crear el expediente}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{E}{No hay conexión a internet}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref{MSG2}{Operación fallida}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela el registro}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+	\UCpaso Muestra el Mensaje \textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{R2}
+	\UCpaso Muestra \IUref{UIPPrincipal}{Pantalla principal del sistema}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R2}{Se cancela la operación cancelar}
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} del mensaje
+        \\\textbf{\MSGref{MSG4}{Confirmación}}.
+    \UCpaso Muestra \IUref{UIEP}{Pantalla Nuevo paciente} conservando los datos ingresados.
+    \UCpaso Continua en el paso \ref{CU3Regresa} del \UCref{CU3}
+\end{UCtrayectoriaA}
+		
+%-------------------------------------- TERMINA descripción del caso de uso.

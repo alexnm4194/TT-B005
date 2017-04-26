@@ -1,0 +1,76 @@
+%Buscar paciente
+\begin{UseCase}{CU6}{Buscar paciente}{
+    El psicólogo tendrá como herramienta un buscador para poder filtrar a todos sus pacientes y de esta forma facilitarle el encontrar un paciente en especifico en la lista de pacientes.
+	}
+	\UCitem{Versión}{1.2 - 09/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{El psicólogo encuentre más fácilmente a un paciente.}
+	\UCitem{Entradas}{Campo de búsqueda pacientes}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El expediente del paciente debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN9}{Enteros Positivos}
+	        \item \BRref{RN20}{Búsqueda}
+	        \item \BRref{RN21}{Formato de Búsqueda}
+	        \item \BRref{RN22}{Búsqueda paciente}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}
+    	    \item \MSGref {MSG3}{No existe información}
+    	    \item \MSGref {MSG14}{Formato de búsqueda}
+    	\end{itemize}
+	}
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Ver Pacientes}.
+    \UCpaso Muestra \IUref{UIVP}{Pantalla Ver pacientes}. \Trayref{R}
+    \UCpaso[\UCactor] Introduce un carácter en el campo de búsqueda. \label{CU6Regresa}
+    \UCpaso Verifica el campo de búsqueda. \Trayref{A} \label{CU6Regresa2}
+        \\\BRref{RN9}{Enteros Positivos}
+	    \\\BRref{RN21}{Formato de Búsqueda}
+	\UCpaso Realiza la búsqueda. \Trayref{B}
+    	\\\BRref{RN22}{Búsqueda paciente}
+	\UCpaso Muestra \IUref{UIVP}{Pantalla Ver pacientes} con los pacientes encontrados. \Trayref{C}
+        \\\BRref{RN20}{Búsqueda}
+    %\UCpaso Continúa en el paso \ref{CU6Regresa} del \UCref{CU6}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{El campo de búsqueda no tiene formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG14}{Formato de búsqueda}}.
+    \UCpaso Muestra \IUref{UIVP}{Pantalla Ver pacientes} conservando el texto en el campo y la lista sin pacientes.
+	\UCpaso Continua en el paso \ref{CU6Regresa} del \UCref{CU6}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{La búsqueda no arrojo resultados}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG3}{No existe información}}.
+    \UCpaso Muestra \IUref{UIVP}{Pantalla Ver pacientes} conservando el texto en el campo y la lista sin pacientes.
+	\UCpaso Continua en el paso \ref{CU6Regresa} del \UCref{CU6}	
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{Se ingresa un nuevo carácter}
+    \UCpaso Continua en el paso \ref{CU6Regresa2} del \UCref{CU6}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela la búsqueda}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+	\UCpaso Se limpia el campo de búsqueda.
+	\UCpaso Muestra la pantalla \\\IUref{UIPPrincipal}{Pantalla principal del sistema}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

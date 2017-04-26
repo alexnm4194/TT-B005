@@ -1,0 +1,41 @@
+%visualizar Nota
+\begin{UseCase}{CU20}{Visualizar Nota}{
+    El psicólogo podrá ver la nota seleccionada.
+	}
+	\UCitem{Versión}{1.0 - 10/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Visualizar una nota.}
+	\UCitem{Entradas}{}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item La nota debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	}	
+	\UCitem{Mensajes}{
+    }
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Notas}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Notas}.
+    \UCpaso[\UCactor] Selecciona una nota.
+    \UCpaso Despliega en pantalla la nota vía
+        \\\IUref{UIEN}{Pantalla Espacio nota}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cerrar}.
+    \UCpaso Muestra \IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso Continúa paso \ref{CU22Continue} en el \UCref{CU22}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+%-------------------------------------- TERMINA descripción del caso de uso.

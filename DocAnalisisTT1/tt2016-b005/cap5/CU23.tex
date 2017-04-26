@@ -1,0 +1,76 @@
+%Buscar Nota
+\begin{UseCase}{CU23}{Buscar Nota}{
+    El psicólogo tendrá como herramienta un buscador para poder filtrar todas sus notas, de esta forma facilitarle el encontrar el archivo en especifico en la lista de notas.
+	}
+	\UCitem{Versión}{1.3 - 10/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Baja}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{El psicólogo encuentre más fácilmente una nota.}
+	\UCitem{Entradas}{Campo de búsqueda cuestionario}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item La nota debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	    \begin{itemize}
+	        \item \BRref{RN9}{Enteros Positivos}
+	        \item \BRref{RN20}{Búsqueda}
+	        \item \BRref{RN21}{Formato de Búsqueda}
+	        \item \BRref{RN24}{ Búsqueda nota}
+	    \end{itemize}
+	}	
+	\UCitem{Mensajes}{
+    	\begin{itemize}
+    	    \item \MSGref {MSG3}{No existe información}
+    	    \item \MSGref {MSG14}{Formato de búsqueda}
+    	\end{itemize}
+	}
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \IUref{UIP}{Pantalla Información paciente}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Notas}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Notas}. \Trayref{R}
+    \UCpaso[\UCactor] Introduce un carácter en el campo de búsqueda. \label{CU23Regresa}
+    \UCpaso Verifica el campo de búsqueda. \Trayref{A} \label{CU23Regresa2}
+        \\\BRref{RN9}{Enteros Positivos}
+	    \\\BRref{RN21}{Formato de Búsqueda}
+	\UCpaso Realiza la búsqueda. \Trayref{B}
+    	\\\BRref{RN24}{Búsqueda nota}
+	\UCpaso Muestra \IUref{UIN}{Pantalla Notas} con las notas encontradas. \Trayref{C}
+        \\\BRref{RN20}{Búsqueda}
+    %\UCpaso Continúa en el paso \ref{CU6Regresa} del \UCref{CU6}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+\begin{UCtrayectoriaA}{A}{El campo de búsqueda no tiene formato correcto}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG14}{Formato de búsqueda}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Notas} conservando el texto en el campo y la lista sin notas.
+	\UCpaso Continua en el paso \ref{CU23Regresa} del \UCref{CU23}
+\end{UCtrayectoriaA}
+		
+\begin{UCtrayectoriaA}{B}{La búsqueda no arrojo resultados}
+    \UCpaso Muestra el Mensaje \textbf{\MSGref {MSG3}{No existe información}}.
+    \UCpaso Muestra \IUref{UIN}{Pantalla Notas} conservando el texto en el campo y la lista sin notas.
+	\UCpaso Continua en el paso \ref{CU23Regresa} del \UCref{CU23}	
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{C}{Se ingresa un nuevo carácter}
+    \UCpaso Continua en el paso \ref{CU23Regresa2} del \UCref{CU23}
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{R}{Se cancela la búsqueda}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+	\UCpaso Se limpia el campo de búsqueda.
+	\UCpaso Muestra la pantalla \IUref{UIP}{Pantalla Información paciente}.
+	\UCpaso Termina el caso de uso.
+\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

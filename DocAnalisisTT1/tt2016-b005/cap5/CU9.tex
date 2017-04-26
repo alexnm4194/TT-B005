@@ -1,0 +1,41 @@
+%visualizar cuestionario
+\begin{UseCase}{CU9}{Visualizar Cuestionario}{
+    El psicólogo podrá ver el cuestionario seleccionado.
+	}
+	\UCitem{Versión}{1.0 - 11/04/2017}
+	\UCitem{Autor}{Alejandro Noriega Montalban}
+	\UCitem{Prioridad}{Alta}
+	\UCitem{Actor}{Psicólogo}
+	\UCitem{Propósito}{Visualizar un cuestionario.}
+	\UCitem{Entradas}{}
+	\UCitem{Salidas}{}
+	\UCitem{Precondiciones}{
+        \begin{itemize}
+            \item El cuestionario debe existir en el sistema.
+        \end{itemize}
+	}
+	\UCitem{Postcondiciones}{
+	}
+	\UCitem{Reglas del negocio}{
+	}	
+	\UCitem{Mensajes}{
+    }
+\end{UseCase}
+%.... Pendiente reglas del neogocio
+
+% ------------ Trayectoria principal, poner referencias a pantallas del sistema, reglas entre otras cosas que sean necesarias. ------------
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Muestra la pantalla \IUref{UIPPrincipal}{Pantalla principal del sistema}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cuestionarios}
+    \UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso[\UCactor] Selecciona un cuestionario.
+    \UCpaso Despliega en pantalla el cuestionario vía
+        \\\IUref{UICS}{Pantalla Cuestionario seleccionado}.
+    \UCpaso[\UCactor] Oprime el botón \IUbutton{Cerrar}.
+    \UCpaso Muestra \IUref{UIC}{Pantalla Cuestionarios}.
+    \UCpaso Continúa paso \ref{CU8Continue} en el \UCref{CU8}.
+\end{UCtrayectoria}
+
+% ---------------- Trayectorias alternativas -------------- Colocar los mensajes  {\bf MSG1-}
+
+%-------------------------------------- TERMINA descripción del caso de uso.
